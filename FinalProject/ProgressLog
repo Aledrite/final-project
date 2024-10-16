@@ -3,3 +3,7 @@ PROGRESS LOG
 [10/15/2024]
 -	Created 'visuals' package and 'Color' class with ANSI escape codes.
 -	Set up Git Repository.
+
+[10/16/2024]
+-	Set up Scanner.
+-	Created start menu.
