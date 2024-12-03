@@ -77,6 +77,7 @@ public class Main
 				break;
 			case '5':
 				programRunning = false;
+				clearScreen();
 				break;
 			}
 			
