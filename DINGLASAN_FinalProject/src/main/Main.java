@@ -11,7 +11,7 @@ public class Main
 	{		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println(Color.CYAN_BOLD + "\nWelcome to Atom. \n");
+		System.out.println(Color.CYAN_BOLD + "\n= = = = Welcome to Atom. = = = = \n");
 		System.out.println(
 				"                  .----.\r\n"
 				+ "      .---------. | == |\r\n"
@@ -59,20 +59,21 @@ public class Main
 				break;
 			case '2':
 				clearScreen();
-				loadingScreen(1600, 68);
+				loadingScreen(1100, 68);
 				clearScreen();
 				areaCircumference(sc);
 				break;
 			case '3':
 				clearScreen();
-				loadingScreen(1800, 10);
+				loadingScreen(1300, 10);
 				clearScreen();
 				areaPerimeter(sc);
 				break;
 			case '4':
 				clearScreen();
-				loadingScreen(2000, 100);
+				loadingScreen(1500, 92);
 				clearScreen();
+				distanceUnitConversion(sc);
 				break;
 			case '5':
 				programRunning = false;
@@ -221,11 +222,170 @@ public class Main
 		
 	}
 	
-	private static void distanceUnitConversion() {
-		String[] units = {"km", "m", "cm"};
-		System.out.println(Color.PURPLE_BACKGROUND + "Welcome to the distance unit converter" + Color.RESET);
+	private static void distanceUnitConversion(Scanner sc) {
+		boolean running = true;
+		while (running) {
+			
+			String[] units = {"km", "m", "cm", "mm"};
+			System.out.println(Color.GREEN + "Welcome to the distance unit converter." + Color.RESET);
+			
+			String unit1 = "";
+			String unit2 = "";
+			int unit1value = 0;
+			
+			
+			
+			boolean get = true;
+			
+			for (int r = 0; r < 2; r++) {
+				get = true;
+				if (r == 0) {System.out.println("Convert from: ");}
+				else {System.out.println("Convert to: ");}
+				
+				for (int i = 0; i < 4; i++) {
+					System.out.print(i+1 + ". "+ units[i] + " ");
+				}
+				
+				if (r == 0) 
+				{
+					while (get) {
+						unit1 = sc.nextLine();
+						try {
+							
+							unit1 = units[Integer.parseInt(unit1)-1];
+							get = false;
+							
+						}catch(Exception e) {
+							System.out.println(Color.RED_BACKGROUND + "Invalid input." + Color.RESET);
+						}
+					}
+					
+					
+				} else if (r == 1) 
+				{
+					unit2 = sc.nextLine();
+					try {
+						
+						unit2 = units[Integer.parseInt(unit2)-1];
+						get = false;
+						
+					}catch(Exception e) {
+						System.out.println(Color.RED_BACKGROUND + "Invalid input." + Color.RESET);
+					}
+				}
+				
+			}
+			
+			get = true;
+			
+			while (get) {
+				System.out.println("What is the value of the " + unit1 + "?");
+				String e = sc.nextLine();
+				
+				try {
+					unit1value = Integer.parseInt(e);
+					get = false;
+				}catch(Exception ex) {
+					System.out.println(Color.RED_BACKGROUND + "Invalid input." + Color.RESET);
+				}
+				
+			}
+			
+			System.out.println(unit1value + unit1 + " is converted to " + convertUnits(unit1, unit2, unit1value) + unit2);
+			
+			System.out.println("Would you like to continue? (Y/N)");
+			char response = sc.nextLine().charAt(0);
+			response = Character.toUpperCase(response);
+			
+			if (response == 'Y') {
+				running = true;
+			} else {
+				running = false;
+			}
+			clearScreen();
+		}
+		
+		
 		
 	}
+	
+	private static double convertUnits(String u1, String u2, int uv1) {
+		
+		double result = uv1;
+		
+		switch (u1) 
+		{
+		
+		case "km":
+			switch (u2) {
+			case "km":
+				result = result;
+				break;
+			case "m":
+				result = result * 1000;
+				break;
+			case "cm":
+				result = result * 100000;
+				break;
+			case "mm": 
+				result = result * 1000000;
+				break;
+			}
+			break;
+		case "m":
+			switch (u2) {
+			case "km":
+				result = result / 1000;
+				break;
+			case "m":
+				result = result;
+				break;
+			case "cm":
+				result = result * 100;
+				break;
+			case "mm": 
+				result = result * 1000;
+				break;
+			}
+			break;
+		case "cm":
+			switch (u2) {
+			case "km":
+				result = result / 100000;
+				break;
+			case "m":
+				result = result / 100;
+				break;
+			case "cm":
+				result = result;
+				break;
+			case "mm": 
+				result = result * 10;
+				break;
+			}
+			break;
+		case "mm":
+			switch (u2) {
+			case "km":
+				result = result / 1000000;
+				break;
+			case "m":
+				result = result / 1000;
+				break;
+			case "cm":
+				result = result / 10;
+				break;
+			case "mm": 
+				result = result;
+				break;
+			}
+			break;
+		
+		}
+		
+		return result;
+	}
+	
 	
 	private static void areaPerimeter(Scanner sc) {
 		System.out.println(Color.YELLOW + "Welcome to the Area & Perimeter calculator." + Color.RESET);
