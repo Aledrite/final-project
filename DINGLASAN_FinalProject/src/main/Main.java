@@ -439,7 +439,7 @@ public class Main
 				double area = 0.0;
 				double perimeter = 0.0;
 				
-				System.out.println(Color.CYAN + "What is the dimensions of the rectangle?" + Color.RESET);
+				System.out.println(Color.CYAN + "What are the dimensions of the rectangle?" + Color.RESET);
 				
 				Boolean loop = true;
 				
